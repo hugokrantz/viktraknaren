@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Vikträknaren</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+    </head>
+
+    <body>
+        <h1>Vikträknaren</h1>
+        <div class="container switch unit-switch">
+            <h3>Välj viktenhet</h3>
+            <form name="switch_form_unit" class="switch-field">
+                <input type="radio" id="unit-radio-one" name="unit_switch" class="unit_switch" value="lbs" checked />
+                <label for="unit-radio-one">lbs</label>
+                <input type="radio" id="unit-radio-two" name="unit_switch" class="unit_switch" value="kg"/>
+                <label for="unit-radio-two">kg</label>
+            </form>
+        </div>
+        <div class="container switch bar-switch">
+            <h3>Välj hantel</h3>
+            <form name="switch_form_bar" class="switch-field">
+                <input type="radio" id="bar-radio-one" name="bar_switch" class="bar_switch" value="alla" checked/>
+                <label for="bar-radio-one">alla</label>
+                <input type="radio" id="bar-radio-two" name="bar_switch" class="bar_switch" value="svart" />
+                <label for="bar-radio-two">svart</label>
+                <input type="radio" id="bar-radio-three" name="bar_switch" class="bar_switch" value="silver" />
+                <label for="bar-radio-three">silver</label>
+            </form>
+        </div>
+
+        <div class="container js">
+            <div class="input_wrapper">
+                <label for="all_bars" class="hidden">Alla</label>
+                <select id="all_bars" name="all_bars" class="weight_select" data-data="all_bars_data">
+                    <option value="">Välj önskad vikt</option>
+                </select>
+
+                <h4>eller mata in vikt</h4>
+                <div class="custom_wrapper">
+                    <input type="number" step="0.5" min="2" max="50" placeholder="Mata in önskad vikt" name="custom" id="custom_input" class="weight_input">
+                    <div id="unit_label" class="unit_label"></div>
+                    <div id="input_feedback" class="input_feedback">&nbsp;</div>
+                    <div id="closest" class="closest">&nbsp;</div>
+                </div>
+
+                <h3>Använd denna kombination:</h3>
+                <div id="weight_combo_all">
+                    <span class="dimmed">Välj önskad vikt</span>
+                </div>
+                <div id="total"></div>
+            </div>
+            <button id="save_combo" disabled>Spara kombination</button>
+        </div>
+
+        <div class="container">
+            <div id="saved_combos">
+            </div>
+            <button id="reset" style="display: none">Rensa sparade hantlar</button>
+        </div>
+
+        <div class="container reference_sheet">
+            <h4>Lathund</h4>
+            <!--
+            <p class="reference" data-lbs="2">2 <span class="unit">lbs</span> = 0,91 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="3">3 <span class="unit">lbs</span> = 1,36 <span class="unit">kg</span></p>
+            -->
+            <p class="reference" data-lbs="4">4 <span class="unit">lbs</span> = 1,81 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="5">5 <span class="unit">lbs</span> = 2,27 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="8">8 <span class="unit">lbs</span> = 3,63 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="10">10 <span class="unit">lbs</span> = 4,54 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="15">15 <span class="unit">lbs</span> = 6,80 <span class="unit">kg</span></p>
+            <p class="reference" data-lbs="20">20 <span class="unit">lbs</span> = 9,07 <span class="unit">kg</span></p>
+        </div>
+
+        <script src="js/script_v3.js"></script> 
+    </body>
+
+</html>
