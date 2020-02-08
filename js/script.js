@@ -77,7 +77,7 @@
     for (var i = min; i <= max; i++) {
       fn(i, a, [], all);
     }
-    if(a.length == max) all.push(a);
+    if (a.length == max) all.push(a);
     return all;
   }
 
@@ -91,18 +91,17 @@
 
     for (let [i, row] of weight_combos.entries()) {
       let combo_sum = (row.reduce((a, b) => a + b.weight, 0) * 2)
-      row.unshift({'total': combo_sum})
+      row.unshift({ total: combo_sum })
     }
     bars.forEach(bar => {
       if (!bar.fixed) {
         let weight_combos_copy = JSON.parse(JSON.stringify(weight_combos))
-        weight_combos_copy.forEach((combo,i) => {
+        weight_combos_copy.forEach((combo) => {
           combo[0].bar = bar.name
           combo[0].total += bar.weight
           all_combos.push(combo)
         })
-      }
-      else {
+      } else {
         let fixed_bar = []
         let fixed_bar_data = {}
         fixed_bar_data = { total: bar.weight, bar: bar.name, fixed: true}
@@ -118,7 +117,6 @@
     }
 
     all_combos = all_combos.sort(comparator)
-
   }
 
   // One function for all radios
@@ -145,7 +143,7 @@
           saved_bars = document.querySelectorAll('#saved_combos .weight_combo .bar'),
           saved_weights = document.querySelectorAll('#saved_combos .weight_combo .weight')
 
-      all_combos.forEach(combo => options.push( new Option( ) ))
+      all_combos.forEach(combo => options.push( new Option( ) )) // I guess this can be merged with the next forEach somehow.
 
       options.forEach((option, i) => {
         let combo = all_combos[i]
