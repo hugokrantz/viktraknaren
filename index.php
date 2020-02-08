@@ -75,7 +75,7 @@
             <p class="reference" data-lbs="20">20 <span class="unit">lbs</span> = 9,07 <span class="unit">kg</span></p>
         </div>
 
-        <script src="js/script_v3.js"></script> 
+        <script src="js/script.js"></script> 
     </body>
 
 </html>
