@@ -1,10 +1,6 @@
 (function () {
   'use strict'
 
-  /* TODO
-  
-  */
-
   // List of available weights (lacks fixed weight bars)
   const weights = [
     { weight: 5.0, name: '5 kg' },
@@ -128,7 +124,6 @@
 
   // Function that generates the select(s) with the available options. Needs to consider saved combos.
   const renderSelects = function () {
-    //populateCombosArray()
     populateCombosArray()
     let options = []
 
@@ -272,7 +267,7 @@
 
     // If selected option has a weight, show the total
     if (!isNaN(parseFloat(total_kg)) ) {
-      total_div.appendChild(total_value)          
+      total_div.appendChild(total_value)
     }
 
     return combo_wrapper
@@ -308,7 +303,7 @@
     }
   })
 
-  // Function for custom input.  
+  // Function for custom input.
   const findClosest = function(target) {
 
     if (target) {
@@ -352,7 +347,6 @@
 
       recipe_div.innerHTML = createCombinationHtml(option).outerHTML
       save_button.disabled = false
-
     }
 
     else {
@@ -383,7 +377,7 @@
       findClosest(null)
     }
   }
-  
+
   // Handle clicks in reference chart
   const references = document.querySelectorAll('.reference')
   for (let reference of references) {
@@ -428,5 +422,4 @@
 
   renderSelects()
   changeLabel()
-
 }())
