@@ -403,4 +403,5 @@
 
   renderSelects();
   changeLabel();
+  custom_input.focus();
 })();
