@@ -198,6 +198,7 @@
       select.add(preset, select[0]);
     }
     //changeLabel()
+    custom_input.focus();
   };
 
   // Function to generate html for the selected option. Still handles the display of the total, for now.

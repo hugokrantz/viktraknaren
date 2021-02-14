@@ -107,13 +107,12 @@ input:invalid {
 .weight, .bar {
     display: inline-block;
     padding: 4px 8px;
-    margin: 5px;
+    margin: 4px;
     background-color: #000;
     color: #fff;
 }
 
 .bar {
-    display: inline-block;
     width: 4em;
     height: 2em;
     text-transform: uppercase;
@@ -121,9 +120,6 @@ input:invalid {
     line-height: 2em;
     border: 1px solid #e5e5e5;
     border-radius: .5em;
-    padding: 4px 8px;
-    margin: 5px;
-    background-color: #000;
     color: #fff;
 }
 
@@ -137,16 +133,14 @@ input:invalid {
 }
 
 .weight {
-    display: inline-block;
     font-weight: 700;
     font-size: 1em;
     height: 3em;
     width: 3em;
     line-height: 2.5em;
-    border: 4px double #fff;
+    border: 6px double #fff;
     border-radius: 50%;
     padding: 4px;
-    margin: 4px;
     background-color: #000;
     color: #fff;
     overflow: hidden;
@@ -166,7 +160,7 @@ input:invalid {
 .separator {
     width: 10px;
     display: inline-block;
-    font-size: .8em;
+    font-size: .7em;
 }
 
 .custom_wrapper {
