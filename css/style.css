@@ -1,5 +1,6 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
     margin: 1% 5%;
     text-align: center;
 }
@@ -15,7 +16,7 @@ div {
 
 .container {
     margin: 2em auto;
-    max-width: 333px;
+    max-width: 360px;
 }
 
 .switch h3 {
@@ -110,6 +111,7 @@ input:invalid {
     margin: 4px;
     background-color: #000;
     color: #fff;
+    vertical-align: middle;
 }
 
 .bar {
@@ -120,7 +122,6 @@ input:invalid {
     line-height: 2em;
     border: 1px solid #e5e5e5;
     border-radius: .5em;
-    color: #fff;
 }
 
 .bar.fast {
@@ -153,8 +154,9 @@ input:invalid {
     font-size: 0.5em;
     display: block;
     position: absolute;
-    top: 2.4em;
-    left: 2.4em;
+    left: 0;
+    right: 0;
+    bottom: -0.5em;
 }
 
 .separator {
