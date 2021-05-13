@@ -258,6 +258,10 @@ input:invalid {
     background-color: #fff;
 }
 
+button {
+    cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
       background-color: #000;
