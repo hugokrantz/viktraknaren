@@ -3,7 +3,6 @@
 
   // List of available weights (lacks fixed weight bars)
   const weights = [
-    { weight: 5.0, name: '5 kg' },
     { weight: 2.5, name: '2,5 kg' },
     { weight: 1.5, name: '1,5 kg' },
     { weight: 1.25, name: '1,25 kg' },
@@ -34,17 +33,6 @@
     unit_label = document.querySelector('#unit_label'),
     save_button = document.querySelector('#save_combo'),
     reset_button = document.querySelector('#reset');
-
-  // Convert weights from kg to g, to circumvent the round-off error crap - but do I really need this now?
-  /*
-  weights.forEach(weight => {
-    weight.weight = weight.weight * 1000
-  })
-
-  bars.forEach(bar => {
-    bar.weight = bar.weight * 1000
-  })
-  */
 
   // Function from https://github.com/jgallen23/combinations/blob/master/index.js
   const getWeightCombos = function(a, max, min) {
