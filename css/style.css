@@ -185,6 +185,10 @@ input:invalid {
     margin-top: 4em;
     border: 1px solid #aaa;
     border-radius: .5em;
+
+    .reference {
+        cursor: pointer;
+    }
 }
 
 /* Select styling from Filament group https://www.filamentgroup.com/lab/select-css.html */
