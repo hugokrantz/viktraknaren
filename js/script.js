@@ -38,20 +38,20 @@
   const getWeightCombos = function(a, max, min) {
     min = min || 1;
     max = max < a.length ? max : a.length;
-    var fn = function(n, src, got, all) {
+    const fn = function(n, src, got, all) {
       if (n == 0) {
         if (got.length > 0) {
           all[all.length] = got;
         }
         return;
       }
-      for (var j = 0; j < src.length; j++) {
+      for (let j = 0; j < src.length; j++) {
         fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
       }
       return;
     };
-    var all = [];
-    for (var i = min; i <= max; i++) {
+    const all = [];
+    for (let i = min; i <= max; i++) {
       fn(i, a, [], all);
     }
     if (a.length == max) all.push(a);
@@ -66,22 +66,21 @@
 
     const weight_combos = getWeightCombos(weights, 3);
 
-    for (let [i, row] of weight_combos.entries()) {
-      let combo_sum = row.reduce((a, b) => a + b.weight, 0) * 2;
+    for (let row of weight_combos) {
+      const combo_sum = row.reduce((a, b) => a + b.weight, 0) * 2;
       row.unshift({ total: combo_sum });
     }
     bars.forEach(bar => {
       if (!bar.fixed) {
-        let weight_combos_copy = JSON.parse(JSON.stringify(weight_combos));
+        const weight_combos_copy = JSON.parse(JSON.stringify(weight_combos));
         weight_combos_copy.forEach(combo => {
           combo[0].bar = bar.name;
           combo[0].total += bar.weight;
           all_combos.push(combo);
         });
       } else {
-        let fixed_bar = [];
-        let fixed_bar_data = {};
-        fixed_bar_data = { total: bar.weight, bar: bar.name, fixed: true };
+        const fixed_bar = [];
+        const fixed_bar_data = { total: bar.weight, bar: bar.name, fixed: true };
         fixed_bar.push(fixed_bar_data);
         all_combos.push(fixed_bar);
       }
@@ -106,14 +105,14 @@
   // Function that generates the select(s) with the available options. Needs to consider saved combos.
   const renderSelects = function() {
     populateCombosArray();
-    let options = [];
+    const options = [];
 
     for (let select of weight_selects) {
       while (select.options.length) {
         select.remove(0);
       }
 
-      let unit = getRadio(unit_radios),
+      const unit = getRadio(unit_radios),
         bar = getRadio(bar_radios),
         saved_bars = document.querySelectorAll('#saved_combos .weight_combo .bar'),
         saved_weights = document.querySelectorAll('#saved_combos .weight_combo .weight');
@@ -121,13 +120,13 @@
       all_combos.forEach(combo => options.push(new Option())); // I guess this can be merged with the next forEach somehow.
 
       options.forEach((option, i) => {
-        let combo = all_combos[i];
+        const combo = all_combos[i];
         option.dataset.kg = combo[0].total;
         option.dataset.lbs = (option.dataset.kg * 2.20462262).toFixed(1);
         option.dataset.bar = combo[0].bar;
         option.dataset.id = i;
         //combo.shift() // Why did I remove the ”total object”?
-        let recipe = [];
+        const recipe = [];
         for (let obj of combo) {
           if (obj.weight) {
             recipe.push(obj.weight.toString());
@@ -171,7 +170,7 @@
         }
       });
 
-      let preset = new Option('Välj önskad vikt i ' + unit, 0, true, true);
+      const preset = new Option('Välj önskad vikt i ' + unit, 0, true, true);
 
       if (enabledCount == 0) {
         preset.text = 'Inga hantlar lediga';
@@ -191,11 +190,12 @@
 
   // Function to generate html for the selected option. Still handles the display of the total, for now.
   const createCombinationHtml = function(input) {
+    let total_lbs, total_kg, total_value, set_title;
     if (input.dataset.id != -1) {
-      var total_lbs = input.dataset.lbs,
-        total_kg = input.dataset.kg,
-        total_value = document.createTextNode(`Total vikt: ${total_lbs.replace('.', ',')} lbs / ${total_kg.replace('.', ',')} kg`), // Tried toLocaleString('sv-SE'), but failed.
-        set_title = document.createTextNode(`${total_lbs.replace('.', ',')} lbs / ${total_kg.replace('.', ',')} kg`);
+      total_lbs = input.dataset.lbs;
+      total_kg = input.dataset.kg;
+      total_value = document.createTextNode(`Total vikt: ${total_lbs.replace('.', ',')} lbs / ${total_kg.replace('.', ',')} kg`); // Tried toLocaleString('sv-SE'), but failed.
+      set_title = document.createTextNode(`${total_lbs.replace('.', ',')} lbs / ${total_kg.replace('.', ',')} kg`);
     }
 
     const combo_wrapper = document.createElement('div'),
@@ -260,13 +260,13 @@
 
   // Keep the unit label correct in the custom input
   const changeLabel = function() {
-    let unit = getRadio(unit_radios);
+    const unit = getRadio(unit_radios);
     unit_label.innerText = unit;
   };
 
   // Listener that fetches and shows combination when select is changed.
   the_select.addEventListener('change', function(evt) {
-    let id = evt.currentTarget.options.selectedIndex,
+    const id = evt.currentTarget.options.selectedIndex,
       option = evt.currentTarget.options[id];
 
     findClosest(null);
@@ -298,7 +298,7 @@
 
       counts[0] = -100; // Replace the first string with a value that will not be matched.
 
-      let closest = counts.reduce(function(prev, curr) {
+      const closest = counts.reduce(function(prev, curr) {
         return Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev; // Bug: If input is 10000000000000000 (16 zeros) or bigger, wrong results are returned. Workaround in place in input handler.
       });
 
@@ -353,7 +353,7 @@
   const references = document.querySelectorAll('.reference');
   for (let reference of references) {
     reference.addEventListener('click', function(evt) {
-      let reference_weight = parseFloat(evt.currentTarget.dataset.lbs),
+      const reference_weight = parseFloat(evt.currentTarget.dataset.lbs),
         input_event = new Event('input');
 
       unit_radio_lbs.checked = true;
@@ -365,7 +365,7 @@
 
   // Save current combo and disable conflictiong options.
   document.querySelector('#save_combo').addEventListener('click', function(evt) {
-    let current_combo = document.querySelector('#weight_combo_all .weight_combo.border');
+    const current_combo = document.querySelector('#weight_combo_all .weight_combo.border');
 
     if (current_combo) {
       reset_button.style.display = 'block';
@@ -380,9 +380,9 @@
 
   // Remove saved combos, hide button, re-render select
   reset_button.addEventListener('click', function() {
-    let saved_combos = document.querySelectorAll('#saved_combos .weight_combo');
+    const saved_combos = document.querySelectorAll('#saved_combos .weight_combo');
 
-    saved_combos.forEach((saved_combo, i) => {
+    saved_combos.forEach(saved_combo => {
       saved_combo.remove();
     });
 
