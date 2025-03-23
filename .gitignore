@@ -2,3 +2,4 @@
 *.css.map
 _old/
 .DS_Store
+.vscode/
