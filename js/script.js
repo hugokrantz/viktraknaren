@@ -64,7 +64,7 @@
   const populateCombosArray = function() {
     all_combos = [];
 
-    const weight_combos = getWeightCombos(weights, 3);
+    const weight_combos = getWeightCombos(weights, 4);
 
     for (let row of weight_combos) {
       const combo_sum = row.reduce((a, b) => a + b.weight, 0) * 2;
