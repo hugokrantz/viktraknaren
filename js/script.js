@@ -258,6 +258,28 @@
     });
   }
 
+  // Update the label for the all_bars select dynamically
+  const updateAllBarsLabel = () => {
+    const selectedBar = getRadio(bar_radios);
+    const allBarsLabel = document.querySelector("label[for='all_bars']");
+    if (selectedBar === 'alla') {
+      allBarsLabel.textContent = 'Alla vikter';
+    } else {
+      allBarsLabel.textContent = `Vikter för ${selectedBar}`;
+    }
+  };
+
+  // Add listener to update the label when bar selection changes
+  for (let radio of bar_radios) {
+    radio.addEventListener('change', function () {
+      renderSelects();
+      updateAllBarsLabel();
+    });
+  }
+
+  // Initial label update
+  updateAllBarsLabel();
+
   // Keep the unit label correct in the custom input
   const changeLabel = function() {
     const unit = getRadio(unit_radios);
